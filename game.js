@@ -1,0 +1,2 @@
+
+gameManager = new GameManager();
