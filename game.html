@@ -1,43 +1,173 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang='en' dir='ltr'>
   <head>
-    <meta charset="utf-8">
-    <link href = './game.css' type="text/css" rel = 'stylesheet'>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <link rel = 'stylesheet' href = './game.css' type='text/css' >
+    <link rel = 'stylesheet' href = './hamburger_menu.css' type='text/css' >
+    <link rel = 'stylesheet' href = './card.css' type = 'text/css' >
     <title>Memory Game</title>
   </head>
   <body>
-    <div class = header><h1> SOUTH PARK - THE MEMORY GAME </h1></div>
-    <table align = center>
-  <tr>
-    <td><img src = './images/cover.png' class = 'card' id = '1' index = 0 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '1' index = 1 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '2' index = 2 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '2' index = 3 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '3' index = 4 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '3' index = 5 active = 'true'></td>
-  </tr>
-  <tr>
-    <td><img src = './images/cover.png' class = 'card' id = '4' index = 6 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '4' index = 7 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '5' index = 8 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '5' index = 9 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '6' index = 10 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '6' index = 11 active = 'true'></td>
-  </tr>
-  <tr>
-    <td><img src = './images/cover.png' class = 'card' id = '7' index = 12 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '7' index = 13 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '8' index = 14 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '8' index = 15 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '9' index = 16 active = 'true'></td>
-    <td><img src = './images/cover.png' class = 'card' id = '9' index = 17 active = 'true'></td>
-  </tr>
-    </table>
+
+  <div class='alert alert-light header' role='alert' align = center>
+  <h4 class='alert-heading display-4'>SOUTH PARK - THE MEMORY GAME</h4>
+  </div>
+  <!-- Hamburger Menu -->
+  <nav role="navigation">
+  <div id="menuToggle">
+    <input type="checkbox" />
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul id="menu">
+      <a href="#" id="menu-newGame" ><li>New Game</li></a>
+      <a href="#" id="menu-scoreBoard"><li>Score Board</li></a>
+      <a href="#"><li>About</li></a>
+    </ul>
+  </div>
+  <!-- END - Hamburger Menu -->
+
+<table align = center>
+    <tr>
+      <td>  <div class="card" id = '1' index = 0 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/1.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '1' index = 1 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/1.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '2' index = 2 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/2.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '2' index = 3 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/2.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '3' index = 4 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/3.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '3' index = 5 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/3.png" style="background-color:blue;">
+          </div>
+        </div></td>
+    </tr>
+    <tr>
+      <td><div class="card" id = '4' index = 6 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/4.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '4' index = 7 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/4.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '5' index = 8 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/5.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '5' index = 9 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/5.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '6' index = 10 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/6.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '6' index = 11 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/6.png" style="background-color:blue;">
+          </div>
+        </div></td>
+    </tr>
+    <tr>
+      <td><div class="card" id = '7' index = 12 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/7.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '7' index = 13 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/7.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '8' index = 14 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/8.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '8' index = 15 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/8.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '9' index = 16 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/9.png" style="background-color:blue;">
+          </div>
+        </div></td>
+      <td><div class="card" id = '9' index = 17 active = 'true'>
+          <input type="checkbox" disabled/>
+          <div class="card-inner">
+              <img class="card-back" src="./images/cover.png">
+              <img class="card-front" src="./images/9.png" style="background-color:blue;">
+          </div>
+        </div></td>
+    </tr>
+  </table>
 
   </body>
-  <script src = "./constants.js"></script>
-  <script src = "./Deck.js"></script>
-  <script src = "./GameManager.js"></script>
-  <script src = "./game.js"></script>
-  <script src = "./events.js"></script>
+  <script src = './constants.js'></script>
+  <script src = './Deck.js'></script>
+  <script src = './ScoreBoard.js'></script>
+  <script src = './GameManager.js'></script>
+  <script src = './game.js'></script>
+  <script src = './events.js'></script>
 </html>

@@ -3,6 +3,7 @@ class GameManager {
   constructor (numPairs) {
 
     this._deck = new Deck(numPairs);
+    this._scoreBoard = new ScoreBoard();
     this._remainingPairs = numPairs || 9;
     this._freezeGame = false;
   }
@@ -11,10 +12,13 @@ class GameManager {
 
     if(this._deck.isActiveCard(card)) {
 
-      if(this._deck.getRevealedCard) { // this is the second of the pair
+      //setTimeout(this._deck.flipCard(card, SHOW),0);
+      this._deck.flipCard(card, SHOW);
 
+      if(this._deck.getRevealedCard) { // this is the second of the pair
         if(this._deck.isMatch(this._deck.getRevealedCard, card)) { // match
 
+          console.log('-MATCH-');
           this._deck.makeCardInactive(this._deck.getRevealedCard);
           this._deck.makeCardInactive(card);
           this._deck.setRevealedCard = null;
@@ -27,7 +31,7 @@ class GameManager {
           this._freezeGame = true;
           setTimeout(()=>{this._deck.flipCard(card, !SHOW)},500);
           setTimeout(()=>{this._deck.flipCard(this._deck.getRevealedCard,!SHOW, REVEALD_CARD); this._freezeGame = false},500);
-          console.log('no match');
+          console.log('-NO MATCH-');
         }
       }
 
@@ -49,14 +53,17 @@ class GameManager {
   }
 
   resetGame() {
-
     this._deck.flipBackAllCards();
-    this._deck.shuffle();
+    setTimeout(()=>{for(let a in [1,2,3]) {this._deck.shuffle()}},250);
     this._remainingPairs = this._deck.getNumPairs;
   }
 
+  async showScoreBoardAsync () {
+      alert(JSON.stringify(await this._scoreBoard.getScoresAsync()));
+  }
+
   getCardList() {
-    
+
     return this._deck.getCardList;
   }
 }

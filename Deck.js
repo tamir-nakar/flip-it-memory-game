@@ -5,7 +5,7 @@ class Deck {
     this._numPairs = numPairs || 9;
     this._cardList = document.querySelectorAll('.card');
     this._revealedCard = null; // the (possibly) revealed card in the board
-    this.shuffle();
+    for(let a in [1,2,3]) {this.shuffle()};
   }
 
   get getNumPairs() { return this._numPairs; }
@@ -20,6 +20,7 @@ class Deck {
 
     this._cardList.forEach(card => this.flipCard(card, !SHOW));
   }
+
   isMatch(card1, card2) {
 
     return card1.getAttribute('id') === card2.getAttribute('id');
@@ -73,6 +74,26 @@ class Deck {
         }
       }
     })
+
+    this._cardList.forEach(card => { // - refactor
+
+      const newImg = `./images/${card.id}.png`;
+      const front = card.querySelector('.card-front');
+      front.setAttribute('src', newImg);
+    });
+  }
+
+  generateCards() {
+
+    let id = 1;
+
+    for(i=0; i<numPairs; i++) {
+
+      _generateCard.call(this, idx, id); // idx: 0, id: 1
+      _generateCard.call(this, idx + 1, id); // idx: 1, id: 1
+      id ++;
+
+    }
   }
 }
 
@@ -81,9 +102,11 @@ function _flipByIndex(index, show, revealedCard) {
 
   const chosenCard = this._cardList[index];
   const cardId = chosenCard.getAttribute('id');
-  const newImg = show? `./images/${cardId}.png` : `./images/cover.png`;
+  //const newImg = show? `./images/${cardId}.png` : `./images/cover.png`;
+  //const newImg = show? 'checked' : '';
 
-  chosenCard.setAttribute('src', newImg);
+  //chosenCard.setAttribute('src', newImg);
+  chosenCard.querySelector('input').checked = show;
   if(!show){
 
     chosenCard.setAttribute('active', true);
