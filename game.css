@@ -10,7 +10,7 @@ body {
   height: 180px;
 }
 
-table {
+#gameTable {
   margin-top:30px;
   border: 5px solid #4b2e2e;
   padding:10px 10px 10px 10px;

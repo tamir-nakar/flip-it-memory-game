@@ -59,7 +59,11 @@ class GameManager {
   }
 
   async showScoreBoardAsync () {
-      alert(JSON.stringify(await this._scoreBoard.getScoresAsync()));
+      await this._scoreBoard.drawAsync();
+  }
+
+  hideScoreBoard() {
+      this._scoreBoard.hide();
   }
 
   getCardList() {
