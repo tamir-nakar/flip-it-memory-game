@@ -4,11 +4,19 @@ class GameManager {
 
     this._deck = new Deck(numPairs);
     this._scoreBoard = new ScoreBoard();
+    this._stopWatch = new StopWatch();
     this._remainingPairs = numPairs || 9;
     this._freezeGame = false;
+    this._isGameStarted = false;
   }
 
   handleCardReveal(card) {
+
+    if(!this._isGameStarted) {
+
+        this._stopWatch.start();
+        this._isGameStarted = true;
+    }
 
     if(this._deck.isActiveCard(card)) {
 
@@ -48,18 +56,33 @@ class GameManager {
     if(this._remainingPairs === 0) {
 
       setTimeout(()=>{alert('YOU WIN!')}, 200);
-      setTimeout(()=>{this.resetGame()},300);
+      setTimeout(()=>{this.resetGame()}, 300);
     }
   }
 
-  resetGame() {
+  async resetGame() {
+
+    this._isGameStarted = false;
+    this._stopWatch.reset();
+    let score = this._stopWatch.getLastRun(); // must be invoked after stopWatch.reset()
+    let isScoreAddedToTable = await this._scoreBoard.drawAsync(score);
     this._deck.flipBackAllCards();
-    setTimeout(()=>{for(let a in [1,2,3]) {this._deck.shuffle()}},250);
+    setTimeout(()=>{for(let a in [1,2,3]) {this._deck.shuffle()}}, 250);
     this._remainingPairs = this._deck.getNumPairs;
   }
 
-  async showScoreBoardAsync () {
-      await this._scoreBoard.drawAsync();
+  async OnSubmitClickedAsync() {
+
+      const score = this._stopWatch.getLastRun();
+      const invalidMsg = this._scoreBoard.validateAndSubmitAsync(score);
+      if(invalidMsg) {
+
+      } 
+  }
+
+  async showScoreBoardAsync(score = null) {
+
+      await this._scoreBoard.drawAsync(score);
   }
 
   hideScoreBoard() {

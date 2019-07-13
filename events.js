@@ -21,3 +21,4 @@ gameManager._deck.getCardList.forEach((card, index) => card.addEventListener('mo
 document.querySelector('#menu-newGame').addEventListener('click', (e) => {e.preventDefault(); MENU_BTN.click(); gameManager.resetGame()});
 document.querySelector('#menu-scoreBoard').addEventListener('click', (e) => {e.preventDefault(); MENU_BTN.click(); gameManager.showScoreBoardAsync()});
 document.querySelector('#scoreBoardCloseBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.hideScoreBoard()});
+document.querySelector('#scoreBoardSubmitBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.OnSubmitClickedAsync()});

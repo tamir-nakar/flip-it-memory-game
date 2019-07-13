@@ -1,6 +1,17 @@
 
+.gameHeader {
+
+    font-family: 'Carter One', cursive;
+    font-size: 30px;
+    color:#383d41;
+    margin: 0;
 
 
+}
+
+input::placeholder {
+color: #856404;
+}
 body {
   background-color: green;
 }
@@ -30,4 +41,21 @@ h1 {
 body {
   background-image: url("./images/bg.jpg");
   background-size: cover;
+}
+
+.stopWatch{
+
+    font-size: 30px;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    border-style: solid;
+
+    border-width: 3px 3px 3px 3px;
+    width:10%;
+    border-color: white;
+
+
+
+
 }

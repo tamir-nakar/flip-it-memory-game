@@ -2,6 +2,7 @@
 <html lang='en' dir='ltr'>
 <head>
     <meta charset='utf-8'>
+    <link href="https://fonts.googleapis.com/css?family=Carter+One&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
     <link rel = 'stylesheet' href = './game.css' type='text/css' >
     <link rel = 'stylesheet' href = './hamburger_menu.css' type='text/css' >
@@ -13,7 +14,8 @@
 <body>
 
     <div class='alert alert-light header' role='alert' align = center>
-        <h4 class='alert-heading display-4'>SOUTH PARK - THE MEMORY GAME</h4>
+        <h4 class="gameHeader">MEMORY GAME</h4>
+        <div align ="center" style="float:right"class="stopWatch">00:00:00</div>
     </div>
     <!-- Hamburger Menu -->
     <nav role="navigation">
@@ -28,6 +30,7 @@
                 <a href="#"><li>About</li></a>
             </ul>
         </div>
+    </nav>
         <!-- END - Hamburger Menu -->
 
         <div id="scoreBoard">
@@ -44,10 +47,10 @@
                     <td align="center"><ul class="list-group"><li class="list-group-item list-group-item-primary">Score</li></ul></td>
                     <td align="center"><ul class="list-group"><li class="list-group-item list-group-item-primary">Date</li></ul></td>
                 </tr>
-
             </table>
+            <p id='scoreBoardMsgArea'></p>
+            <button type="button" id='scoreBoardSubmitBtn' class="btn btn-success">Submit Score</button>
         </div>
-
 
         <table id = "gameTable" align = center>
             <tr>
@@ -184,10 +187,12 @@
             </tr>
         </table>
 
+
     </body>
     <script src = './constants.js'></script>
     <script src = './Deck.js'></script>
     <script src = './ScoreBoard.js'></script>
+    <script src = './StopWatch.js'></script>
     <script src = './GameManager.js'></script>
     <script src = './game.js'></script>
     <script src = './events.js'></script>
