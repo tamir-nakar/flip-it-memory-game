@@ -60,12 +60,16 @@ class GameManager {
     }
   }
 
-  async resetGame() {
+  async resetGame(isInvokedFromMenu = null) {
 
     this._isGameStarted = false;
     this._stopWatch.reset();
-    let score = this._stopWatch.getLastRun(); // must be invoked after stopWatch.reset()
-    let isScoreAddedToTable = await this._scoreBoard.drawAsync(score);
+    if(!isInvokedFromMenu) { // game Ended
+
+        let score = this._stopWatch.getLastRun(); // must be invoked after stopWatch.reset()
+        let isScoreAddedToTable = await this._scoreBoard.drawAsync(score);
+    }
+    this._deck.clearRevealedCard();
     this._deck.flipBackAllCards();
     setTimeout(()=>{for(let a in [1,2,3]) {this._deck.shuffle()}}, 250);
     this._remainingPairs = this._deck.getNumPairs;
@@ -77,7 +81,7 @@ class GameManager {
       const invalidMsg = this._scoreBoard.validateAndSubmitAsync(score);
       if(invalidMsg) {
 
-      } 
+      }
   }
 
   async showScoreBoardAsync(score = null) {

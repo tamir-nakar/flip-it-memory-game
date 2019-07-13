@@ -16,6 +16,12 @@ class Deck {
 
   set setRevealedCard(card) { this._revealedCard = card; }
 
+
+  clearRevealedCard() {
+
+    this._revealedCard = null;
+  }
+
   flipBackAllCards() {
 
     this._cardList.forEach(card => this.flipCard(card, !SHOW));
