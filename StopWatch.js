@@ -13,6 +13,7 @@ class StopWatch {
     start() {
 
             this._isRunning = true;
+            this._domElement.innerHTML = "00:00.00";
             this._interval = setInterval(() => runStopWatch.call(this), 10);
     }
 
@@ -21,15 +22,19 @@ class StopWatch {
         return this._lastRun;
     }
 
+    zerofy() {
+
+        this._domElement.innerHTML = "00:00.00";
+    }
+
     reset() {
 
         this._lastRun = this._domElement.innerHTML;
-        console.log('stopwatch: updated last run to '+ this._lastRun + typeof(this._lastRun));
         clearInterval(this._interval);
         this._interval = null;
         this._watch = [0, 0, 0, 0];
         this._isRunning = false;
-        this._domElement.innerHTML = "00:00.00";
+
     }
 }
 

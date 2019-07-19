@@ -69,6 +69,7 @@ class GameManager {
         let score = this._stopWatch.getLastRun(); // must be invoked after stopWatch.reset()
         let isScoreAddedToTable = await this._scoreBoard.drawAsync(score);
     }
+    //this._stopWatch.zerofy();
     this._deck.clearRevealedCard();
     this._deck.flipBackAllCards();
     setTimeout(()=>{for(let a in [1,2,3]) {this._deck.shuffle()}}, 250);
@@ -78,10 +79,7 @@ class GameManager {
   async OnSubmitClickedAsync() {
 
       const score = this._stopWatch.getLastRun();
-      const invalidMsg = this._scoreBoard.validateAndSubmitAsync(score);
-      if(invalidMsg) {
-
-      }
+      this._scoreBoard.validateAndSubmitAsync(score);
   }
 
   async showScoreBoardAsync(score = null) {
@@ -95,6 +93,11 @@ class GameManager {
 
   getCardList() {
 
-    return this._deck.getCardList;
+    return this._deck.getCardList();
+  }
+
+  loadScoreboardInBackgroundAsync(){
+
+    this._scoreBoard.fetchScoresInBackgroundAsync();
   }
 }

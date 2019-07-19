@@ -1,3 +1,4 @@
+const FORCE_FETCH = true;
 const RESET_FROM_MENU = true;
 const SCOREBOARD_LENGTH = 10;
 const NEW_ENTRY = true;

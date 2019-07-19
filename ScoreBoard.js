@@ -13,6 +13,12 @@ class ScoreBoard {
         this._msgAreaElem = document.querySelector("#scoreBoardMsgArea");
     }
 
+    async fetchScoresInBackgroundAsync() {
+
+        _getTopScoresAsync.call(this, FORCE_FETCH);
+        console.log('background-fetch ended');
+    }
+
     async validateAndSubmitAsync(score) {
         // called when user pressed 'submit' on table.
         const name = document.querySelector("#nameInput").value;
@@ -26,6 +32,7 @@ class ScoreBoard {
             try {
 
                 _submitDataAsync.call(this, dataToSubmit);
+                this._cachedResutls = null; // so next scoreboard will be fresh
             } catch(e) {
 
             }
@@ -193,12 +200,12 @@ function _displayOrHideTable(display, isSubmitOption = false) {
     isSubmitOption? submitElem.display = "block" : submitElem.display = "none";
 }
 
-async function _getTopScoresAsync()  {
+async function _getTopScoresAsync(forceFetch = false)  {
 
     let results;
 
     try{
-        if(_isResultsFromCache.call(this)) {
+        if(_isResultsFromCache.call(this) && !forceFetch && this._cachedResutls) {
             results = this._cachedResutls;
             console.log('cached results');
         } else {
