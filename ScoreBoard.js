@@ -11,6 +11,22 @@ class ScoreBoard {
         this._scoreBoardDivElem = document.querySelector("#scoreBoard");
         this._submitBtnElem = document.querySelector("#scoreBoardSubmitBtn");
         this._msgAreaElem = document.querySelector("#scoreBoardMsgArea");
+        this._userDataManager = new UserDataManager();
+        this._bestScoreElem = document.querySelector('#bestScoreLabel');
+    }
+
+    handleLocalScore(candidate) {
+
+        let score = this._userDataManager.getScore()
+
+        if(!candidate) { // when game starts load best score
+
+            this._bestScoreElem.innerHTML = `BEST: ${score? score : '---'}`;
+        }else if(!score || _getAbsoluteValue(candidate) < _getAbsoluteValue(score)) {
+
+            this._userDataManager.setScore(candidate);
+            this._bestScoreElem.innerHTML = `BEST: ${candidate}`;
+        }
     }
 
     async fetchScoresInBackgroundAsync() {

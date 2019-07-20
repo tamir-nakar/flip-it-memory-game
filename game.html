@@ -16,7 +16,8 @@
 
     <div class='alert alert-light header' role='alert' align = center>
         <h4 class="gameHeader">MEMORY GAME</h4>
-        <div align ="center" style="float:right"class="stopWatch">00:00:00</div>
+        <div align ="center" style="float:right"class="stopWatch">00:00.00</div>
+        <div align ="center" id="bestScoreLabel" style="float:right;margin-right:5px"class="stopWatch bestScore">BEST: ---</div>
     </div>
     <!-- Hamburger Menu -->
     <nav role="navigation">
@@ -197,6 +198,7 @@
 
     </body>
     <script src = './constants.js'></script>
+    <script src = './UserDataManager.js'></script>
     <script src = './Deck.js'></script>
     <script src = './ScoreBoard.js'></script>
     <script src = './StopWatch.js'></script>

@@ -11,6 +11,12 @@ class GameManager {
     this._matchSignal = document.querySelector('#matchSignal');
   }
 
+  loadBestScore() {
+
+      this._scoreBoard.handleLocalScore();
+
+  }
+
   handleCardReveal(card) {
 
     if(!this._isGameStarted) {
@@ -70,6 +76,7 @@ class GameManager {
     if(!isInvokedFromMenu) { // game Ended
 
         let score = this._stopWatch.getLastRun(); // must be invoked after stopWatch.reset()
+        this._scoreBoard.handleLocalScore(score);
         let isScoreAddedToTable = await this._scoreBoard.drawAsync(score);
     }
     //this._stopWatch.zerofy();
