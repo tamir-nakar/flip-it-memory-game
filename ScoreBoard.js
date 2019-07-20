@@ -258,8 +258,6 @@ function _getIndexInTable(scoreToAdd, scores) {
     let resIndex = scoresLength; // resIndex is zeroBased.
     console.log(`@_getIndexInTable: the scores are: ${JSON.stringify(scores)}`);
     scoreToAdd = _getAbsoluteValue.call(this, scoreToAdd);
-    //const idx = scores.reduce((acc, currentScore) => _getAbsoluteValue.call(this, currentScore.Score) > scoreToAdd? acc ++ : acc++, 0);
-    //scores.find((currentScore, index) => _getAbsoluteValue.call(this, currentScore.Score) > scoreToAdd)
     for(let i = 0; i < scoresLength; i++){
 
     if(_getAbsoluteValue.call(this, scores[i].Score) > scoreToAdd) {

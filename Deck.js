@@ -17,6 +17,11 @@ class Deck {
   set setRevealedCard(card) { this._revealedCard = card; }
 
 
+  blinkAPair(card1, card2, time) {
+
+        setTimeout(()=> _startBlinking.call(this, card1, card2), 500);
+        setTimeout(()=>_stopBlinking.call(this, card1, card2), time);
+  }
   clearRevealedCard() {
 
     this._revealedCard = null;
@@ -108,10 +113,7 @@ function _flipByIndex(index, show, revealedCard) {
 
   const chosenCard = this._cardList[index];
   const cardId = chosenCard.getAttribute('id');
-  //const newImg = show? `./images/${cardId}.png` : `./images/cover.png`;
-  //const newImg = show? 'checked' : '';
 
-  //chosenCard.setAttribute('src', newImg);
   chosenCard.querySelector('input').checked = show;
   if(!show){
 
@@ -122,4 +124,16 @@ function _flipByIndex(index, show, revealedCard) {
 
     this._revealedCard = null;
   }
+}
+
+function _stopBlinking(card1, card2) {
+
+    card1.querySelector(".card-front").classList.remove("fastBlinking");
+    card2.querySelector(".card-front").classList.remove("fastBlinking");
+}
+
+function _startBlinking(card1, card2) {
+
+    card1.querySelector(".card-front").classList.add("fastBlinking");
+    card2.querySelector(".card-front").classList.add("fastBlinking");
 }

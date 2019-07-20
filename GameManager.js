@@ -8,6 +8,7 @@ class GameManager {
     this._remainingPairs = numPairs || 9;
     this._freezeGame = false;
     this._isGameStarted = false;
+    this._matchSignal = document.querySelector('#matchSignal');
   }
 
   handleCardReveal(card) {
@@ -31,14 +32,16 @@ class GameManager {
           this._deck.makeCardInactive(card);
           this._deck.setRevealedCard = null;
           this._remainingPairs--;
+          setTimeout(()=>_showMatchSignal.call(this),200);
           this.checkIfWin();
         }
 
         else { // no match
 
           this._freezeGame = true;
-          setTimeout(()=>{this._deck.flipCard(card, !SHOW)},500);
-          setTimeout(()=>{this._deck.flipCard(this._deck.getRevealedCard,!SHOW, REVEALD_CARD); this._freezeGame = false},500);
+          this._deck.blinkAPair(card, this._deck.getRevealedCard, 1500);
+          setTimeout(()=>{this._deck.flipCard(card, !SHOW)}, 1500);
+          setTimeout(()=>{this._deck.flipCard(this._deck.getRevealedCard,!SHOW, REVEALD_CARD); this._freezeGame = false},1600);
           console.log('-NO MATCH-');
         }
       }
@@ -100,4 +103,13 @@ class GameManager {
 
     this._scoreBoard.fetchScoresInBackgroundAsync();
   }
+}
+
+//private
+
+function _showMatchSignal() {
+
+    this._matchSignal.style.display='block';
+    setTimeout(()=> this._matchSignal.style.display='none',750);
+
 }
