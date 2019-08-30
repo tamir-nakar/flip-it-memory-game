@@ -1,0 +1,93 @@
+/* #customize div {
+    background-color: #383d41;
+
+} */
+#customize {
+    /* opacity: 0.8; */
+    width:50%;
+    min-height: 50%;
+    position: absolute;
+    left: 25%;
+    top:30%;
+    z-index: 5;
+    border-radius: 7px;
+    display:block;
+    background-color: #4f555aeb;
+
+}
+
+#customize .scoreBoardHeader {
+    background-color: #383d41;
+
+}
+
+.zoom {
+
+  transition: transform .2s; /* Animation */
+}
+
+
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+.deck {
+    border: 2px solid white;
+
+
+    border-radius: 7px;
+    border-color: white;
+}
+
+.desc {
+color: white;
+
+
+}
+
+.drop_zone img{
+  border: 2px solid #383d41;
+  width:  150px;
+  height: 180px;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  background-color: none;
+}
+
+.drop_zone_back_card img{
+  border: 2px solid #801a20;
+  width:  150px;
+  height: 180px;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+.card_label {
+position: absolute;
+background-color:#383d41;
+width:144px;
+opacity: 0.5;
+text-align: center;
+margin-left: 3px;
+margin-top: 153px;
+color:white;
+}
+
+.drop_zone_dragged img{
+  border: 2px solid #383d41;
+  width:  150px;
+  height: 180px;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  background-color: #3d4b56;
+}
+
+.drop_zone_back_card_dragged img{
+  border: 2px solid #383d41;
+  width:  150px;
+  height: 180px;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  background-color: #774242;
+}

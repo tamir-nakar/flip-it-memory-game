@@ -1,0 +1,44 @@
+/* #deckSettings div {
+    background-color: #383d41;
+
+} */
+#deckSettings {
+    /* opacity: 0.8; */
+    width:400;
+    position: absolute;
+    left: 25%;
+    top:30%;
+    z-index: 5;
+    border-radius: 7px;
+    display:none;
+    background-color: #4f555aeb;
+
+}
+
+#deckSettings .scoreBoardHeader {
+    background-color: #383d41;
+
+}
+
+.zoom {
+
+  transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+.deck {
+    border: 2px solid white;
+
+
+    border-radius: 7px;
+    border-color: white;
+}
+
+.desc {
+color: white;
+
+
+}

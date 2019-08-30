@@ -114,11 +114,12 @@ a:hover
   height:420px;
   margin: -80px 0 0 -50px;
   padding: 50px;
+  padding-right: 0;
   padding-top: 100px;
 
   background: #d6d8db;
   /* list-style-type: none; */
-  list-style-image: url('./images/card_icon.png');
+  list-style-image: url('../images/card_icon.png');
 
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */

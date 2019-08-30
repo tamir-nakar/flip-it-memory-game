@@ -81,12 +81,15 @@ class ScoreBoard {
                     scoresArr.length < SCOREBOARD_LENGTH
                 )
                       {
-                         // if qualified to enter the table
+                         // qualified to enter the table
                          index = _getIndexInTable.call(this, score, scoresArr);
                          _draw.call(this, scoresArr, index, score)// present table with textArea
                          console.log(`you are in number: ${index}`);
                          isScoreAddedToTable = true; // qualified to the table
-                     }
+                 }else { // not qualified
+                     _draw.call(this, scoresArr)// present table with textArea
+
+                 }
             }
         } // else present no results for now please try in a moment
         return isScoreAddedToTable;

@@ -94,11 +94,47 @@ class GameManager {
 
   async showScoreBoardAsync(score = null) {
 
+      _hideAllMenus.call(this);
       await this._scoreBoard.drawAsync(score);
   }
 
+  async showDeckSettings() {
+
+      _hideAllMenus.call(this);
+      document.querySelector('#deckSettings').style.display = 'block';
+  }
+
+  async showCreateDeck() {
+
+      _hideAllMenus.call(this);
+      document.querySelector('#customize').style.display = 'block';
+  }
+
+  setDeckName(deckName) {
+      this._deck.setDeckName = deckName;
+    }
+
   hideScoreBoard() {
+
       this._scoreBoard.hide();
+  }
+
+  hideDeckSettings() {
+
+    document.querySelector('#deckSettings').style.display = 'none';
+  }
+
+  hideCreateDeck() {
+
+      document.querySelector('#customize').style.display = 'none';
+        this.showDeckSettings();
+  }
+
+  changeDeck(deckName) {
+
+    this._deck.changeDeck(deckName);
+this.resetGame(RESET_FROM_MENU)
+
   }
 
   getCardList() {
@@ -118,5 +154,13 @@ function _showMatchSignal() {
 
     this._matchSignal.style.display='block';
     setTimeout(()=> this._matchSignal.style.display='none',750);
+
+}
+
+function _hideAllMenus() {
+
+    document.querySelector('#customize').style.display = 'none';
+    document.querySelector('#deckSettings').style.display = 'none';
+    this._scoreBoard.hide();
 
 }

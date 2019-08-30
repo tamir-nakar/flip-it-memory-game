@@ -5,7 +5,8 @@ class Deck {
     this._numPairs = numPairs || 9;
     this._cardList = document.querySelectorAll('.card');
     this._revealedCard = null; // the (possibly) revealed card in the board
-    for(let a in [1,2,3]) {this.shuffle()};
+    this._deckName = DECK_1;
+    for(let a in [1,2,3,4,5,6]) {this.shuffle()};
   }
 
   get getNumPairs() { return this._numPairs; }
@@ -16,6 +17,7 @@ class Deck {
 
   set setRevealedCard(card) { this._revealedCard = card; }
 
+  set setDeckName(deckName) {this._deckName = deckName;}
 
   blinkAPair(card1, card2, time) {
 
@@ -25,6 +27,28 @@ class Deck {
   clearRevealedCard() {
 
     this._revealedCard = null;
+  }
+
+  changeDeck(deckName) {
+
+   if(this._deckName !== deckName) {
+        //this func should be moved to DeckCustomizer
+        this._deckName = deckName;
+        this._cardList.forEach(card => { // - refactor
+
+
+            const newImgBack = `./images/${this._deckName}/cover.png`;
+            const newImgFront = `./images/${this._deckName}/${card.id}.png`;
+
+            const back = card.querySelector('.card-back');
+            const front = card.querySelector('.card-front');
+            back.setAttribute('src', newImgBack);
+            front.setAttribute('src', newImgFront);
+
+        })
+   }
+
+
   }
 
   flipBackAllCards() {
@@ -86,11 +110,24 @@ class Deck {
       }
     })
 
-    this._cardList.forEach(card => { // - refactor
+    this._cardList.forEach(card => { // after we messed out the id's of the card, we match apropirate img to each id
 
-      const newImg = `./images/${card.id}.png`;
-      const front = card.querySelector('.card-front');
-      front.setAttribute('src', newImg);
+      if([DECK_1, DECK_2].includes(this._deckName)) {
+
+          const newImg = `./images/${this._deckName}/${card.id}.png`;
+          const front = card.querySelector('.card-front');
+          front.setAttribute('src', newImg);
+      }else{ // customized
+
+        //const customizedImages = Array.from(new Set(Array.from(this._cardList).map(card => card.querySelector('.card-front').src)));
+        debugger;
+        const newImg = imagesArr[card.id - 1].src;
+        const front = card.querySelector('.card-front');
+        front.setAttribute('src', newImg);
+
+
+      }
+
     });
   }
 

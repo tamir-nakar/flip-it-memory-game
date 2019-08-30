@@ -6,3 +6,6 @@ const SHOW = true;
 const REVEALD_CARD = true;
 const CARDS_ARR = document.querySelectorAll('.card');
 const MENU_BTN = document.querySelector("#menuToggle input");
+const DECK_1 = 'deck_southpark';
+const DECK_2 = 'deck_marvel';
+const DECK_CUSTOMIZED = 'cusomized';
