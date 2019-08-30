@@ -112,6 +112,7 @@ class GameManager {
 
   setDeckName(deckName) {
       this._deck.setDeckName = deckName;
+gameManager.resetGame(RESET_FROM_MENU)
     }
 
   hideScoreBoard() {
