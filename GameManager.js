@@ -106,7 +106,12 @@ class GameManager {
 
   async showCreateDeck() {
 
+      let customizedImages = null;
+
       _hideAllMenus.call(this);
+      if(customizedImages = UserDataManager.getCustomizedDeck()) {
+            fillImageHolders(customizedImages);
+      }
       document.querySelector('#customize').style.display = 'block';
   }
 

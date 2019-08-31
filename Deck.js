@@ -6,6 +6,7 @@ class Deck {
     this._cardList = document.querySelectorAll('.card');
     this._revealedCard = null; // the (possibly) revealed card in the board
     this._deckName = DECK_1;
+    this._customizedCards = [];
     for(let a in [1,2,3,4,5,6]) {this.shuffle()};
   }
 
@@ -24,6 +25,7 @@ class Deck {
         setTimeout(()=> _startBlinking.call(this, card1, card2), 500);
         setTimeout(()=>_stopBlinking.call(this, card1, card2), time);
   }
+
   clearRevealedCard() {
 
     this._revealedCard = null;
@@ -47,8 +49,6 @@ class Deck {
 
         })
    }
-
-
   }
 
   flipBackAllCards() {
@@ -117,17 +117,12 @@ class Deck {
           const newImg = `./images/${this._deckName}/${card.id}.png`;
           const front = card.querySelector('.card-front');
           front.setAttribute('src', newImg);
-      }else{ // customized
+      }else { // customized
 
-        //const customizedImages = Array.from(new Set(Array.from(this._cardList).map(card => card.querySelector('.card-front').src)));
-        debugger;
         const newImg = imagesArr[card.id - 1].src;
         const front = card.querySelector('.card-front');
         front.setAttribute('src', newImg);
-
-
       }
-
     });
   }
 

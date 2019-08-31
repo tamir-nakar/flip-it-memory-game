@@ -29,3 +29,4 @@ document.querySelector('#deckSettingsCloseBtn').addEventListener('click', (e) =>
 document.querySelector('#createDeckCloseBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.hideCreateDeck()});
 document.querySelector('#scoreBoardSubmitBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.OnSubmitClickedAsync()});
 document.querySelector('#customizeConfirmBtn').addEventListener('click', (e) => {e.preventDefault(); resetCards(); gameManager.setDeckName(DECK_CUSTOMIZED)});
+document.querySelector('#customizeClearBtn').addEventListener('click', (e) => {e.preventDefault(); clearImageHolders(); });

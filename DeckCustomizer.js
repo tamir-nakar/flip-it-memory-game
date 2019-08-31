@@ -82,7 +82,7 @@
             confirmBtn.removeAttribute('disabled')
         }else {
 
-            //confirmBtn.addAttribute('disabled');
+            confirmBtn.setAttribute('disabled', '');
 
         }
     }
@@ -108,6 +108,7 @@
         }
 
         document.querySelector('#customize').style.display = "none";
+        UserDataManager.setCustomizedDeck(imagesArr);
     }
 
     function removeDragData(ev) {
@@ -119,4 +120,20 @@
         // Use DataTransfer interface to remove the drag data
         ev.dataTransfer.clearData();
       }
+    }
+    this.enableOrDisableConfirmBtn()
+
+    function fillImageHolders(images) {
+
+        imagesArr.forEach((img, idx) => img.src = images[idx]);
+        this.enableOrDisableConfirmBtn()
+    }
+
+    function clearImageHolders() {
+
+        imagesArr.forEach(img => img.removeAttribute('src'));
+
+        this.enableOrDisableConfirmBtn()
+
+
     }
