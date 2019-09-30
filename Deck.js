@@ -138,6 +138,17 @@ class Deck {
 
     }
   }
+
+  hideAPair(card1, card2, time = 0) {
+
+      setTimeout(() => card1.style.visibility = 'hidden', time)
+      setTimeout(() => card2.style.visibility = 'hidden', time)
+  }
+
+  unhideAllCards() {
+    // the timeout is nessecery so we can be sure that hideAPair func couldnt be ivnvoked AFTER this func
+    setTimeout( () =>this._cardList.forEach( card => card.style.visibility = 'visible'), 1050)
+  }
 }
 
 // private
@@ -162,10 +173,14 @@ function _stopBlinking(card1, card2) {
 
     card1.querySelector(".card-front").classList.remove("fastBlinking");
     card2.querySelector(".card-front").classList.remove("fastBlinking");
+    card1.querySelector(".card-back").classList.remove("fastBlinking");
+    card2.querySelector(".card-back").classList.remove("fastBlinking");
 }
 
 function _startBlinking(card1, card2) {
 
     card1.querySelector(".card-front").classList.add("fastBlinking");
     card2.querySelector(".card-front").classList.add("fastBlinking");
+    card1.querySelector(".card-back").classList.add("fastBlinking");
+    card2.querySelector(".card-back").classList.add("fastBlinking");
 }

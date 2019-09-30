@@ -14,7 +14,6 @@ class GameManager {
   loadBestScore() {
 
       this._scoreBoard.handleLocalScore();
-
   }
 
   handleCardReveal(card) {
@@ -36,10 +35,12 @@ class GameManager {
           console.log('-MATCH-');
           this._deck.makeCardInactive(this._deck.getRevealedCard);
           this._deck.makeCardInactive(card);
-          this._deck.setRevealedCard = null;
           this._remainingPairs--;
           setTimeout(()=>_showMatchSignal.call(this),200);
+          this._deck.hideAPair(this._deck.getRevealedCard, card, 1000);
+          this._deck.setRevealedCard = null;
           this.checkIfWin();
+
         }
 
         else { // no match
@@ -73,6 +74,7 @@ class GameManager {
 
     this._isGameStarted = false;
     this._stopWatch.reset();
+    this._deck.unhideAllCards();
     if(!isInvokedFromMenu) { // game Ended
 
         let score = this._stopWatch.getLastRun(); // must be invoked after stopWatch.reset()
@@ -84,6 +86,8 @@ class GameManager {
     this._deck.flipBackAllCards();
     setTimeout(()=>{for(let a in [1,2,3]) {this._deck.shuffle()}}, 250);
     this._remainingPairs = this._deck.getNumPairs;
+
+
   }
 
   async OnSubmitClickedAsync() {
