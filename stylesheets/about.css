@@ -1,0 +1,32 @@
+#about {
+    /* opacity: 0.8; */
+    width:400;
+    position: absolute;
+    left: 25%;
+    top:30%;
+    z-index: 5;
+    border-radius: 7px;
+    display:none;
+    background-color: #4f555aeb;
+
+}
+
+#about .scoreBoardHeader {
+    background-color: #383d41;
+
+}
+
+#about p {
+    color:white
+}
+
+#about h2 {
+    color:white
+
+}
+
+#about a {
+    color: #e0f377;
+    font-size: 20px;
+
+}

@@ -1,10 +1,18 @@
 
 .gameHeader {
 
-    font-family: 'Carter One', cursive;
-    font-size: 30px;
-    color:#383d41;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 35px;
+    color:#eeeeee;
     margin: 0;
+}
+
+.alert-light{
+background-color: #00adb5;
+border:  solid #222831;
+border-width: 0 0 10px 0;
+
+
 }
 
 input::placeholder {
@@ -12,10 +20,6 @@ input::placeholder {
 color: #856404;
 }
 
-body {
-
-  background-color: green;
-}
 
 .card img {
 
@@ -26,11 +30,12 @@ body {
 #gameTable {
 
   margin-top:30px;
-  border: 5px solid #4b2e2e;
+  border: 5px solid #222831;
   padding:10px 10px 10px 10px;
   border-collapse: separate;
-  border-radius: 10px;
-  background-image: url("../images/table.jpg");
+  border-radius: 6px;
+ // background-image: url("../images/table.jpg");
+  background-color:#eeeeee;
   background-size: cover;
   /* min-height: 584px;
   min-width: 956px; */
@@ -44,23 +49,27 @@ h1 {
 
 body {
 
-  background-image: url("../images/bg.jpg");
+  //background-image: url("../images/bg.jpg");
+  background-color: #393e46;
   background-size: cover;
 }
 
 .stopWatch {
 
+
     font-size: 30px;
-    color: white;
-    background-color: black;
+    color: #eeeeee;
+    background-color: #00adb5;
     border-radius: 3px;
     border-style: solid;
+    margin-top:12px;
     padding: 0 5px 0px 5px;
-    border-width: 3px 3px 3px 3px;
-    border-color: white;
+    border-width: 0px 6px 6px 6px;
+    border-color: #222831;
 }
 
 .bestScore{
 
-    background-color: #121f61;
+    background-color: #00adb5;
+    color: #eeeeee
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <link href="https://fonts.googleapis.com/css?family=Carter+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
     <link rel = 'stylesheet' href = './stylesheets/game.css' type='text/css' >
     <link rel = 'stylesheet' href = './stylesheets/hamburger_menu.css' type='text/css' >
@@ -11,19 +12,22 @@
     <link rel = 'stylesheet' href = './stylesheets/animations.css' type = 'text/css' >
     <link rel = 'stylesheet' href = './stylesheets/deck_settings.css' type = 'text/css' >
     <link rel = 'stylesheet' href = './stylesheets/customize_deck.css' type = 'text/css' >
+    <link rel = 'stylesheet' href = './stylesheets/about.css' type = 'text/css' >
 
     <title>Memory Game</title>
 </head>
 
 <body>
 
+<!-- Game Header START -->
     <div class='alert alert-light header' role='alert' align = center>
-        <h4 class="gameHeader">MEMORY GAME</h4>
+        <h4 class="gameHeader">Flip It!</h4>
         <div align ="center" style="float:right"class="stopWatch">00:00.00</div>
         <div align ="center" id="bestScoreLabel" style="float:right;margin-right:5px"class="stopWatch bestScore">BEST: ---</div>
     </div>
+<!-- Game Header END -->
 
-    <!-- Hamburger Menu -->
+<!-- Hamburger Menu START -->
     <nav role="navigation">
         <div id="menuToggle">
             <input type="checkbox" />
@@ -34,14 +38,14 @@
                 <a href="#" id="menu-newGame" ><li>New Game</li></a>
                 <a href="#" id="menu-scoreBoard"><li>Score Board</li></a>
                 <a href="#" id="menu-deckSettings"><li>Deck Settings</li></a>
-                <a href="#"><li>About</li></a>
+                <a href="#" id="menu-about"><li>About</li></a>
             </ul>
         </div>
     </nav>
-    <!-- END - Hamburger Menu -->
+<!-- Hamburger Menu END -->
 
+<!-- ScoreBoard Window START -->
     <div id="scoreBoard">
-
         <div class = "scoreBoardHeader">
             <button id = "scoreBoardCloseBtn" type="button" class="btn btn-danger">X</button>
             <div align= "center">ScoreBoard</div>
@@ -57,18 +61,16 @@
         <p id='scoreBoardMsgArea'></p>
         <button type="button" id='scoreBoardSubmitBtn' class="btn btn-success">Submit Score</button>
     </div>
+<!-- ScoreBoard Window END -->
 
-    <!-- deckSettings Menu -->
+<!-- Deck Settings Window START -->
     <div id="deckSettings">
-
         <div class = "scoreBoardHeader">
             <button id = "deckSettingsCloseBtn" type="button" class="btn btn-danger">X</button>
             <div align= "center">Deck Settings</div>
         </div>
-
         <table align="center">
         <tr>
-
                 <td>
                     <div id = 'southparkButton' class = 'zoom' style="margin-top:40px; margin-left:85px; margin-right:20px"><img class='deck' src = './images/deckSettings/deck1.jpg' width='150px' height='180px' ></div>
                     <div style="margin-left:85px"><br><p class = 'desc'>South-Park</p></div>
@@ -76,28 +78,40 @@
                 <td>
                     <div id = 'marvelButton' class = 'zoom' style="margin-top:40px; margin-right:20px;"><img class='deck' src = './images/deckSettings/deck2.jpg' width='150px' height='180px'></div>
                     <div style="margin-left:20px"><br><p class = 'desc'>Marvel</p></div>
-
                 </td>
-                <td>
+                <td id='customizeButonTd'>
                     <div id = 'cusomizeButton' class = 'zoom' style="margin-top:40px; margin-right:20px"><img class='deck' src = './images/deckSettings/customise.jpg' width='150px' height='180px' ></div>
                     <div style="margin-left:20px"><br><p class = 'desc'>Customised</p></div>
                 </td>
-
         </tr>
         </table>
     </div>
-    <!-- end deck settings  -->
+<!-- Deck Settings Window END -->
 
-    <!-- customise deck menu -->
+<!-- About Window START -->
+    <div id="about">
+        <div class = "scoreBoardHeader">
+            <button id = "aboutCloseBtn" type="button" class="btn btn-danger">X</button>
+            <div align= "center">About</div>
+        </div>
+        <br>
+        <br>
+        <p>This Memory game is a pure JavaScript SPA application (no use of external library/framework),
+        With a Strong emphasize on OOP programming and modular code (ES6 classes).</p>
+        <p>Designed and developed by Tamir Nakar; This game is a part of the portfolio site:
+        <a href src="https://tamirnakar.000webhostapp.com/" target="_blank">www.tamirnakar.com </a>. </p>
+        <p>You are more than welcome to enter the site, explore some more content and share your toughts</p>
+        <h2> Thanks for playing!</h2>
+    </div>
+<!-- About Window END -->
 
+<!-- Deck Custimization Window START -->
     <div id="customize" style="width:800px">
-
         <div class = "scoreBoardHeader">
             <button id = "createDeckCloseBtn" type="button" class="btn btn-danger">X</button>
             <div align= "center">Customize Your Deck</div>
         </div><br>
         <div style="text-align:center"><p style="color:#d4dce4">Create your own deck by dragging local images (jpg/png) to the following boxes.<br> When finished - hit 'Confirm'</p></div>
-
         <table align="center" >
         <tr>
         <td><div id="drop_zone_1" class = 'drop_zone' ondrop="dropHandler(event);" ondragleave="dragOutHandler(event)" ondragover="dragOverHandler(event);">
@@ -144,27 +158,24 @@
       <td><div id="drop_zone_9" class = 'drop_zone' ondrop="dropHandler(event);" ondragleave="dragOutHandler(event)" ondragover="dragOverHandler(event);">
           <div class='card_label'>Card-9</div>
 
-    <img id='img9' class='cstm_img_holder' width='150' height='180'>
-    </div></td>
-    <td><div id="drop_zone_10" class = 'drop_zone_back_card' ondrop="dropHandler(event);" ondragleave="dragOutHandler(event)" ondragover="dragOverHandler(event);">
-        <div class='card_label' style="background-color: red">Card-Back</div>
+        <img id='img9' class='cstm_img_holder' width='150' height='180'>
+        </div></td>
+        <td><div id="drop_zone_10" class = 'drop_zone_back_card' ondrop="dropHandler(event);" ondragleave="dragOutHandler(event)" ondragover="dragOverHandler(event);">
+            <div class='card_label' style="background-color: red">Card-Back</div>
 
-    <img id='img10' class='cstm_img_holder' width='150' height='180'>
-    </div></td>
+        <img id='img10' class='cstm_img_holder' width='150' height='180'>
+        </div></td>
 
       </table><br>
 
       <div align="center"><button type="button"  id='customizeConfirmBtn' class="btn btn-success" disabled style='margin-bottom:5px' >Confirm</button>
           <button type="button"  id='customizeClearBtn' class="btn btn-secondary" style='margin-bottom:5px' >Clear All</button>
 
-</div>
-
-
-
+        </div>
     </div>
-    <!-- end customize deck menu  -->
+<!-- Deck Custimization Window END -->
 
-
+<!-- Game Table START -->
         <table id = "gameTable" align = center>
             <h1 id="matchSignal" class="animated" style="display:none">
               <span>M</span><span>A</span><span>T</span><span>C</span><span>H</span><span>!</span>
@@ -302,9 +313,10 @@
                 </div></td>
             </tr>
         </table>
+<!-- Game Table END -->
 
-
-    </body>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js"></script>
     <script src = './constants.js'></script>
     <script src = './UserDataManager.js'></script>
     <script src = './Deck.js'></script>

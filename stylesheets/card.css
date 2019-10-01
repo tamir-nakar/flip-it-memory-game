@@ -19,6 +19,7 @@
   width: 150px;
   height: 180px;
   perspective: 1000px;
+margin:3px
 
 }
 
@@ -44,10 +45,78 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.6);
+
+
 }
+
+
 
 .card-front {
   background-color: #2980b9;
   color: white;
   transform: rotateY(180deg);
+}
+
+/* .card-back:hover {
+
+    animation: hvr-glow 0.5s linear infinite;
+
+} */
+
+
+@-webkit-keyframes card-back {
+  50% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes card-back {
+  50% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+.card-back:hover {
+
+    animation: hvr-pop 0.3s ease-in-out 1;
+}
+
+/* Pop */
+@-webkit-keyframes hvr-pop {
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+@keyframes hvr-pop {
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+.hvr-pop {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.hvr-pop:hover, .hvr-pop:focus, .hvr-pop:active {
+  -webkit-animation-name: hvr-pop;
+  animation-name: hvr-pop;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
 }

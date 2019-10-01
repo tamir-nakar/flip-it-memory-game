@@ -1,11 +1,8 @@
 // Static class
 
-class UserDataManager {
+const deviceParser = new UAParser(navigator.userAgent);
 
-    // constructor() {
-    //
-    //     this._storage = window.localStorage;
-    // }
+class UserDataManager {
 
     static setScore(score) {
 
@@ -40,21 +37,9 @@ class UserDataManager {
             return null;
         }
     }
-}
 
-/*
+    static isMobile() {
 
-let instance = null;
-
-constructor() {
-
-    if (!instance) {
-
-         instance = this;
-         this._storage = window.localStorage;
-
+        return Boolean(deviceParser.getDevice() && deviceParser.getDevice().type);
     }
-
-    return instance;
 }
-*/

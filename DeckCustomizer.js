@@ -1,139 +1,128 @@
-    const fileReader  = new FileReader();
-	let draggedTo_imgElem = null;
-    const cardsList =  Array.from(document.querySelectorAll('.card'));
+const fileReader = new FileReader();
+let draggedTo_imgElem = null;
+const cardsList = Array.from(document.querySelectorAll('.card'));
+const imagesArr = Array.from(document.querySelectorAll('.cstm_img_holder'));
+const confirmBtn = document.querySelector('#customizeConfirmBtn');
 
-	fileReader.addEventListener("load", function () {
+fileReader.addEventListener("load", function() {
 
-		draggedTo_imgElem.src = fileReader.result;
-        enableOrDisableConfirmBtn()
+	draggedTo_imgElem.src = fileReader.result;
+	enableOrDisableConfirmBtn()
 
-	});
-
-	fileReader.addEventListener("error", function () {
-
-		alert('An error has occured during img processing, please try again');
 });
 
-    const imagesArr = Array.from(document.querySelectorAll('.cstm_img_holder'));
-    const confirmBtn = document.querySelector('#customizeConfirmBtn');
-    function dragOverHandler(ev) {
+fileReader.addEventListener("error", function() {
 
-        ev.preventDefault();
+	alert('An error has occured during img processing, please try again');
+});
 
-        if(ev.target.parentElement.classList[0] === 'drop_zone_back_card') {
-            //ev.target.parentElement.classList = ['drop_zone_back_card_dragged']
-            ev.target.style.backgroundColor = '#774242';
-        } else {
-            ev.target.parentElement.classList = ['drop_zone_dragged']
-        }
+function dragOverHandler(ev) {
 
-    }
+	ev.preventDefault();
 
-    function dragOutHandler(ev) {
+	if (ev.target.parentElement.classList[0] === 'drop_zone_back_card') {
 
-      ev.preventDefault();
-      if(ev.target.parentElement.classList[0] === 'drop_zone_dragged') {
-          ev.target.parentElement.classList = ['drop_zone']
+		ev.target.style.backgroundColor = '#774242';
+	} else {
 
+		ev.target.parentElement.classList = ['drop_zone_dragged']
+	}
+}
 
+function dragOutHandler(ev) {
 
-      }else{
-          //ev.target.parentElement.classList = ['drop_zone_back_card']
+	ev.preventDefault();
+	if (ev.target.parentElement.classList[0] === 'drop_zone_dragged') {
 
-          ev.target.style.backgroundColor = 'transparent ';
+		ev.target.parentElement.classList = ['drop_zone']
+	} else {
 
-  }
-    }
+		ev.target.style.backgroundColor = 'transparent ';
+	}
+}
 
-    function dropHandler(ev) {
+function dropHandler(ev) {
 
-	  ev.preventDefault();
+	ev.preventDefault();
+	const allowedFileTypes = ['image/jpeg', 'image/png'];
+	let file = null;
+    draggedTo_imgElem = document.querySelector('#' + ev.target.id); //the image element to present the image in it
 
-	  const allowedFileTypes = ['image/jpeg', 'image/png'];
-	  draggedTo_imgElem = document.querySelector('#'+ev.target.id); //the image element to present the image in it
-      let file = null;
+	if (ev.dataTransfer.items) {
 
-	  if (ev.dataTransfer.items) {
+		const candidate = ev.dataTransfer.items[0];
 
-		  const candidate = ev.dataTransfer.items[0];
-
-          if (candidate.kind === 'file' && allowedFileTypes.includes(candidate.type)) {
+		if (candidate.kind === 'file' && allowedFileTypes.includes(candidate.type)) {
 
 			file = candidate.getAsFile();
-		    if (file) {
+			if (file) {
 
-			  fileReader.readAsDataURL(file);
-		    }
-          }else {
+				fileReader.readAsDataURL(file);
+			}
+		} else {
 
 			alert(`FileType ${candidate.type} is not allowed (jpg/png only)`);
-		  }
+		}
 
-      }
-      // Pass event to removeDragData for cleanup
-      removeDragData(ev)
-    }
+	}
+	// Pass event to removeDragData for cleanup
+	removeDragData(ev)
+}
 
-    function enableOrDisableConfirmBtn() {
+function enableOrDisableConfirmBtn() {
 
-        const emptyImg = imagesArr.find(img => !img.src );
-        if(!emptyImg) {
+	const emptyImg = imagesArr.find(img => !img.src);
 
-            confirmBtn.removeAttribute('disabled')
-        }else {
+	if (!emptyImg) {
 
-            confirmBtn.setAttribute('disabled', '');
+		confirmBtn.removeAttribute('disabled')
+	} else {
 
-        }
-    }
+		confirmBtn.setAttribute('disabled', '');
+	}
+}
 
-    function resetCards() {
+function resetCards() {
 
-        let customizedCards_idx = 0 ;
-        //let evenCouner = 1;
-        for(let cardList_idx = 0; cardList_idx < cardsList.length ; cardList_idx++) {
+	let customizedCards_idx = 0;
+	//let evenCouner = 1;
+	for (let cardList_idx = 0; cardList_idx < cardsList.length; cardList_idx++) {
+        // every i+=2 we do j++
+		let pair = cardsList.filter(card => card.id == cardList_idx + 1);
+		pair.forEach(card => {
 
-            // every i+=2 we do j++
+			card.querySelector('.card-front').src = imagesArr[customizedCards_idx].src;
+			card.querySelector('.card-back').src = imagesArr[imagesArr.length - 1].src;
+		})
 
-            let pair = cardsList.filter(card => card.id == cardList_idx + 1);
+		customizedCards_idx++;
+	}
 
-            pair.forEach(card => {
+	document.querySelector('#customize').style.display = "none";
+	UserDataManager.setCustomizedDeck(imagesArr);
+}
 
-                card.querySelector('.card-front').src= imagesArr[customizedCards_idx].src;
-                card.querySelector('.card-back').src = imagesArr[imagesArr.length - 1].src;
-            })
+function removeDragData(ev) {
 
-            customizedCards_idx++;
+	if (ev.dataTransfer.items) {
+		// Use DataTransferItemList interface to remove the drag data
+		ev.dataTransfer.items.clear();
+	} else {
+		// Use DataTransfer interface to remove the drag data
+		ev.dataTransfer.clearData();
+	}
+}
 
-        }
+this.enableOrDisableConfirmBtn()
 
-        document.querySelector('#customize').style.display = "none";
-        UserDataManager.setCustomizedDeck(imagesArr);
-    }
+function fillImageHolders(images) {
 
-    function removeDragData(ev) {
-      console.log('Removing drag data')
-      if (ev.dataTransfer.items) {
-        // Use DataTransferItemList interface to remove the drag data
-        ev.dataTransfer.items.clear();
-      } else {
-        // Use DataTransfer interface to remove the drag data
-        ev.dataTransfer.clearData();
-      }
-    }
-    this.enableOrDisableConfirmBtn()
+	imagesArr.forEach((img, idx) => img.src = images[idx]);
+	this.enableOrDisableConfirmBtn()
+}
 
-    function fillImageHolders(images) {
+function clearImageHolders() {
 
-        imagesArr.forEach((img, idx) => img.src = images[idx]);
-        this.enableOrDisableConfirmBtn()
-    }
-
-    function clearImageHolders() {
-
-        imagesArr.forEach(img => img.removeAttribute('src'));
-
-        this.enableOrDisableConfirmBtn()
-
-
-    }
+	imagesArr.forEach(img => img.removeAttribute('src'));
+	this.enableOrDisableConfirmBtn()
+}
