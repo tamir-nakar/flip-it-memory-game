@@ -18,6 +18,13 @@ gameManager._deck.getCardList.forEach((card, index) => card.addEventListener('mo
   }
 }))
 
+window.addEventListener('mouseup',(e) => {
+
+    if(!e.target || !e.target.closest('.window')) {
+        gameManager.hideAllMenus();
+    }
+});
+
 document.querySelector('#menu-newGame').addEventListener('click', (e) => {e.preventDefault(); MENU_BTN.click(); gameManager.resetGame(RESET_FROM_MENU)});
 document.querySelector('#menu-scoreBoard').addEventListener('click', (e) => {e.preventDefault(); MENU_BTN.click(); gameManager.showScoreBoardAsync()});
 document.querySelector('#menu-about').addEventListener('click', (e) => {e.preventDefault(); MENU_BTN.click(); gameManager.showAboutPage()});

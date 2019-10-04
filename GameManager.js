@@ -32,7 +32,6 @@ class GameManager {
 			if (this._deck.getRevealedCard) { // this is the second of the pair
 				if (this._deck.isMatch(this._deck.getRevealedCard, card)) { // match
 
-					console.log('-MATCH-');
 					this._deck.makeCardInactive(this._deck.getRevealedCard);
 					this._deck.makeCardInactive(card);
 					this._remainingPairs--;
@@ -51,7 +50,6 @@ class GameManager {
 						this._deck.flipCard(this._deck.getRevealedCard, !SHOW, REVEALD_CARD);
 						this._freezeGame = false
 					}, 1600);
-					console.log('-NO MATCH-');
 				}
 			} else {
 				// this is the first card reveald of the pair
@@ -68,6 +66,10 @@ class GameManager {
 			setTimeout(() => { alert('Congratulations, YOU WIN!') }, 200);
 			setTimeout(() => { this.resetGame() }, 300);
 		}
+	}
+
+	hideAllMenus() {
+		_hideAllMenus.call(this);
 	}
 
 	async resetGame(isInvokedFromMenu = null) {
@@ -161,7 +163,8 @@ class GameManager {
 	changeDeck(deckName) {
 
 		this._deck.changeDeck(deckName);
-		this.resetGame(RESET_FROM_MENU)
+		this.resetGame(RESET_FROM_MENU);
+		_hideAllMenus.call(this);
 
 	}
 

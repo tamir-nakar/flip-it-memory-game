@@ -1,32 +1,39 @@
 #about {
-    /* opacity: 0.8; */
-    width:400;
-    position: absolute;
-    left: 25%;
-    top:30%;
-    z-index: 5;
-    border-radius: 7px;
-    display:none;
-    background-color: #4f555aeb;
+	text-align: left;
+	display: none;
+}
 
+#aboutContent {
+	/* position: absolute;
+    left: 50%;
+    transform: translateX(-50%); */
+	color: white;
+	font-family: 'Kaushan Script', cursive;
+	font-size: 20px;
+}
+
+#aboutContent p {
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	font-family: 'Roboto', sans-serif;
 }
 
 #about .scoreBoardHeader {
-    background-color: #383d41;
-
+	background-color: #383d41;
 }
 
 #about p {
-    color:white
+	color: white
 }
 
 #about h2 {
-    color:white
-
+	color: white;
+	padding-top: 60px;
+	padding-left: 30px;
 }
 
 #about a {
-    color: #e0f377;
-    font-size: 20px;
-
+	color: #e0f377;
+	font-size: 20px;
 }

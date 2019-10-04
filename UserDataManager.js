@@ -19,7 +19,6 @@ class UserDataManager {
 
         if(Array.isArray(imgArr) && imgArr.length === 10) {
 
-            debugger;
             const res = imgArr.map(img => img.src);
             window.localStorage.setItem('customized_deck', JSON.stringify(res));
         }

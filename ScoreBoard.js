@@ -30,7 +30,7 @@ class ScoreBoard {
 	async fetchScoresInBackgroundAsync() {
 
 		_getTopScoresAsync.call(this, FORCE_FETCH);
-		console.log('background-fetch ended');
+		//console.log('background-fetch ended');
 	}
 
 	async validateAndSubmitAsync(score) {
@@ -42,7 +42,7 @@ class ScoreBoard {
 
 			this._msgAreaElem.innerHTML = '';
 			const dataToSubmit = _prepareDataToSubmit.call(this, name, score);
-			console.log(`the data we try to submit is : ${dataToSubmit}`);
+			//console.log(`the data we try to submit is : ${dataToSubmit}`);
 			try {
 
 				_submitDataAsync.call(this, dataToSubmit);
@@ -66,7 +66,7 @@ class ScoreBoard {
 		_cleanTable.call(this);
 		if (scoresArr) {
 
-			console.log(`ScoreBoard: the scores: ${JSON.stringify(scoresArr)}`)
+			//console.log(`ScoreBoard: the scores: ${JSON.stringify(scoresArr)}`)
 			if (score === null) { // just present table (probably user chose showScoreboard)
 
 				this._msgAreaElem.innerHTML = '';
@@ -81,7 +81,7 @@ class ScoreBoard {
 					// qualified to enter the table
 					index = _getIndexInTable.call(this, score, scoresArr);
 					_draw.call(this, scoresArr, index, score) // present table with textArea
-					console.log(`you are in number: ${index}`);
+					//console.log(`you are in number: ${index}`);
 					isScoreAddedToTable = true; // qualified to the table
 				} else { // not qualified
 					_draw.call(this, scoresArr) // present table with textArea
@@ -113,7 +113,7 @@ async function _submitDataAsync(dataToSubmit) {
 
 function _isValidName(name, invalidNameOutputArr) {
 
-	const invalidChars = /[|!|@|#|^|\&|\*|\(|\)|_|=|\{|\}|\[|\]|\\|:|;|“|‘|<|>|,|\?|\/|`]/;
+	const invalidChars = /[|!|@|$|#|^|\&|\*|\(|\)|_|=|\{|\}|\[|\]|\\|:|;|“|‘|<|>|,|\?|\/|`]/;
 	isValid = true;
 
 	if (!name || name === '') {
@@ -193,11 +193,12 @@ function _addNewRowToBoard(index, result, isNewEntry) {
 
 	const newRow = document.createElement("tr");
 	newRow.classList.add("secondaryRow");
+
 	newRow.innerHTML = `
-    <td align="center" style="width:1%"><ul class="list-group"><li class='list-group-item list-group-item-secondary'>${index}</li></ul></td>
-    <td align="center"><ul class="list-group"><li class='list-group-item list-group-item-secondary' id='nameSection'>${isNewEntry? '' : result.Name}</li></ul></td>
-    <td align="center"><ul class="list-group"><li class='list-group-item list-group-item-secondary'>${isNewEntry? _formatScore.call(this, result) : _formatScore.call(this, result.Score)}</li></ul></td>
-    <td align="center"><ul class="list-group"><li class='list-group-item list-group-item-secondary'>${isNewEntry?  _getCurrentDate.call(this) : result.Date}</li></ul></td>`
+    <td align="center" style="width:1%"><ul class="list-group"><li class='list-group-item list-group-item-secondary secondaryExtraStyle'>${index}</li></ul></td>
+    <td align="center"><ul class="list-group"><li class='list-group-item list-group-item-secondary secondaryExtraStyle' id='nameSection'>${isNewEntry? '' : result.Name}</li></ul></td>
+    <td align="center"><ul class="list-group"><li class='list-group-item list-group-item-secondary secondaryExtraStyle'>${isNewEntry? _formatScore.call(this, result) : _formatScore.call(this, result.Score)}</li></ul></td>
+    <td align="center"><ul class="list-group"><li class='list-group-item list-group-item-secondary secondaryExtraStyle'>${isNewEntry?  _getCurrentDate.call(this) : result.Date}</li></ul></td>`
 
 	if (isNewEntry) {
 		newRow.querySelector('#nameSection').innerHTML = `<input type = "text" id = 'nameInput' class='blinking' placeholder='Enter Your Name' style="display:block;width:100%;height:95%;border:0;background:transparent;text-align:center">`;
@@ -222,13 +223,13 @@ async function _getTopScoresAsync(forceFetch = false) {
 	try {
 		if (_isResultsFromCache.call(this) && !forceFetch && this._cachedResutls) {
 			results = this._cachedResutls;
-			console.log('cached results');
+			//console.log('cached results');
 		} else {
 			const response = await fetch(this._requestUrl);
 			results = await response.json();
 			this._cachedResutls = results;
 			this._lastReqTimestamp = Date.now();
-			console.log('fresh results');
+			//console.log('fresh results');
 		}
 
 	} catch (e) {
@@ -253,7 +254,7 @@ function _minToMsec(mins) {
 
 function _getAbsoluteValue(time) {
 
-	console.log(`going to replace and split: ${JSON.stringify(time)}`);
+	//console.log(`going to replace and split: ${JSON.stringify(time)}`);
 	const splitted = time.replace('.', ':').split(':');
 	const last = splitted.length - 1;
 	return parseInt(splitted[last - 2]) * 10000 + parseInt(splitted[last - 1]) * 100 + parseInt(splitted[last]);
@@ -271,7 +272,7 @@ function _getIndexInTable(scoreToAdd, scores) {
 
 	const scoresLength = scores.length;
 	let resIndex = scoresLength; // resIndex is zeroBased.
-	console.log(`@_getIndexInTable: the scores are: ${JSON.stringify(scores)}`);
+	//console.log(`@_getIndexInTable: the scores are: ${JSON.stringify(scores)}`);
 	scoreToAdd = _getAbsoluteValue.call(this, scoreToAdd);
 	for (let i = 0; i < scoresLength; i++) {
 

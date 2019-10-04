@@ -1,60 +1,59 @@
 #scoreBoard {
-    /* opacity: 0.8; */
-    width:50%;
-    min-height: 50%;
-    position: absolute;
-    left: 25%;
-    top:30%;
-    z-index: 5;
-    border-radius: 7px;
-    display:none;
-    background-color: #4f555aeb;
-
+	/* opacity: 0.8; */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: inherit;
+	height: inherit;
+	z-index: 5;
+	border-radius: 7px;
+	display: none;
+	/* background-color: #4f555aeb; */
+	background-color: #222831;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
 }
 
-#scoreBoard .scoreBoardHeader {
-    background-color: #383d41;
-
-}
-
-.scoreBoardHeader > div {
-    display: inline;
-    color: white;
-    border-radius: 7px;
-    margin-left:37%;
-
-}
 #scoreBoard table {
-    width: 100%;
-
-
+	width: 100%;
 }
 
 #scoreBoard td {
-    width: 33%;
+	width: 33%;
 }
 
-.secondaryRow > td ul li{
-    padding: 0;
-    margin:0;
-    border-style: : none;
-    border-radius: none;
-    border: none;
-
+.secondaryRow>td ul li {
+	padding: 0;
+	margin: 0;
+	border-style: : none;
+	border-radius: none;
+	border: none;
 }
 
 .blinking {
-  animation: blinker 1s linear infinite;
+	animation: blinker 1s linear infinite;
 }
 
 .fastBlinking {
-  animation: blinker 0.5s linear infinite;
+	animation: blinker 0.5s linear infinite;
 }
 
 @keyframes blinker {
-  50% { opacity: 0; }
+	50% {
+		opacity: 0;
+	}
 }
 
 #scoreBoardMsgArea {
-    color: red;
+	color: red;
+}
+
+.titleExtraStyle {
+	font-size: 30px;
+	font-family: 'Kaushan Script', cursive;
+	background-color: #ffffff;
+}
+
+.secondaryExtraStyle {
+	background-color: #eeeeee;
 }
