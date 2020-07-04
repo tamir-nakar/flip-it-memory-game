@@ -2,8 +2,8 @@ class ScoreBoard {
   constructor(cacheTtlMin) {
     this._cacheTtlMin =
       _minToMsec.call(this, cacheTtlMin) || _minToMsec.call(this, 1);
-    //this._requestUrl = 'https://savant-server.herokuapp.com/db/scoreboards/memory';
-    this._requestUrl = "http://localhost:3000/db/scoreboards/memory_game";
+    this._requestUrl =
+      "https://savant-server.herokuapp.com/db/scoreboards/memory_game";
     this._cachedResutls = null;
     this._lastReqTimestamp = null;
     this._scoreBoardTableElem = document.querySelector("#scoreBoardTable");
