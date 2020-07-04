@@ -69,6 +69,7 @@ class ScoreBoard {
         _draw.call(this, scoresArr);
       } else {
         // There is a score to (maybe) insert the table
+        score = _getAbsoluteValue.call(this, score);
         if (
           (scoresArr &&
             (scoresArr.length === 0 ||
@@ -123,7 +124,7 @@ function _isValidName(name, invalidNameOutputArr) {
 
 function _prepareDataToSubmit(name, score) {
   const date = _getCurrentDate.call(this);
-  const formattedScore = Number(score.replace(":", "").replace(".", "")); // 00:04.06 -> 000406 -> 406
+  const formattedScore = _getAbsoluteValue.call(this, score); // 00:04.06 -> 000406 -> 406
 
   return {name, date, score: formattedScore};
 }
@@ -191,7 +192,9 @@ function _addNewRowToBoard(index, result, isNewEntry) {
       isNewEntry ? "" : result.name
     }</li></ul></td>
     <td align="center"><ul class="list-group"><li class='list-group-item list-group-item-secondary secondaryExtraStyle'>${
-      isNewEntry ? result : _formatScore.call(this, result.score)
+      isNewEntry
+        ? _formatScore.call(this, result)
+        : _formatScore.call(this, result.score)
     }</li></ul></td>
     <td align="center"><ul class="list-group"><li class='list-group-item list-group-item-secondary secondaryExtraStyle'>${
       isNewEntry ? _getCurrentDate.call(this) : result.date
@@ -255,16 +258,9 @@ function _minToMsec(mins) {
   return mins ? mins * 60 * 1000 : null;
 }
 
-// function _getAbsoluteValue(time) {
-//   //console.log(`going to replace and split: ${JSON.stringify(time)}`);
-//   const splitted = time.replace(".", ":").split(":");
-//   const last = splitted.length - 1;
-//   return (
-//     parseInt(splitted[last - 2]) * 10000 +
-//     parseInt(splitted[last - 1]) * 100 +
-//     parseInt(splitted[last])
-//   );
-// }
+function _getAbsoluteValue(time) {
+  return Number(time.replace(":", "").replace(".", "")); // 00:04.06 -> 000406 -> 406
+}
 
 function _formatScore(absoluteScore) {
   let temp = String(absoluteScore).padStart(6, "0"); // 603 -> '000603'
@@ -272,18 +268,6 @@ function _formatScore(absoluteScore) {
 }
 
 function _getIndexInTable(scoreToAdd, scores) {
-  //   const scoresLength = scores.length;
-  //   let resIndex = scoresLength; // resIndex is zeroBased.
-  //   //console.log(`@_getIndexInTable: the scores are: ${JSON.stringify(scores)}`);
-  //   scoreToAdd = _getAbsoluteValue.call(this, scoreToAdd);
-  //   for (let i = 0; i < scoresLength; i++) {
-  //     if (_getAbsoluteValue.call(this, scores[i].Score) > scoreToAdd) {
-  //       resIndex = i;
-  //       break;
-  //     }
-  //   }
-  //   return resIndex;
-
   const scoresLength = scores.length;
   let resIndex = scoresLength; // resIndex is zeroBased.
   //console.log(`@_getIndexInTable: the scores are: ${JSON.stringify(scores)}`);
