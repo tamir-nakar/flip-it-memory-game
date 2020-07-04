@@ -272,7 +272,7 @@ function _getIndexInTable(scoreToAdd, scores) {
   let resIndex = scoresLength; // resIndex is zeroBased.
   //console.log(`@_getIndexInTable: the scores are: ${JSON.stringify(scores)}`);
   for (let i = 0; i < scoresLength; i++) {
-    if (scores[i] > scoreToAdd) {
+    if (scores[i].score > scoreToAdd) {
       resIndex = i;
       break;
     }
