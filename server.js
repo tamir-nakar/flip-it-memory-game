@@ -1,43 +1,64 @@
-import express from 'express'
+import express from "express";
+import cors from "cors";
 import { Redis } from "@upstash/redis";
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 const redis = Redis.fromEnv();
-app.use(express.static('public'));
+app.use(
+  cors({
+    origin: "https://flip-it-memory-game.vercel.app/",
+    methods: ["GET", "POST"],
+  })
+);
+
+app.use(express.static("public"));
 app.use(express.json());
 
-app.get('/scoreboard', async (req, res) => {
+app.get("/scoreboard", async (req, res) => {
   try {
-
     const scoreboard = await redis.get(process.env.SCOREBOARD_REDIS_KEY);
     if (scoreboard) {
       res.json(scoreboard);
     } else {
       // Handle case where there is no scoreboard data
-      res.status(404).json({ success: false, message: 'Scoreboard not found' });
+      res.status(404).json({ success: false, message: "Scoreboard not found" });
     }
   } catch (error) {
     // Handle any errors that occur during the fetch
-    res.status(500).json({ success: false, message: 'Error fetching scoreboard', error: error.message });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Error fetching scoreboard",
+        error: error.message,
+      });
   }
 });
 
-app.post('/scoreboard', async (req, res) => {
+app.post("/scoreboard", async (req, res) => {
   try {
-
     const scoreboard = await redis.get(process.env.SCOREBOARD_REDIS_KEY);
     if (scoreboard) {
-      scoreboard.push(req.body)
-      await redis.set(process.env.SCOREBOARD_REDIS_KEY,  JSON.stringify(scoreboard));
+      scoreboard.push(req.body);
+      await redis.set(
+        process.env.SCOREBOARD_REDIS_KEY,
+        JSON.stringify(scoreboard)
+      );
     } else {
       // Handle case where there is no scoreboard data
-      res.status(404).json({ success: false, message: 'Scoreboard not found' });
+      res.status(404).json({ success: false, message: "Scoreboard not found" });
     }
   } catch (error) {
     // Handle any errors that occur during the fetch
-    res.status(500).json({ success: false, message: 'Error fetching scoreboard', error: error.message });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Error fetching scoreboard",
+        error: error.message,
+      });
   }
 });
 
