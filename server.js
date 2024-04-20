@@ -20,6 +20,7 @@ app.use(express.json());
 
 app.get("/scoreboard", async (req, res) => {
   try {
+    console.log(process.env.SCOREBOARD_REDIS_KEY)
     const scoreboard = await redis.get(process.env.SCOREBOARD_REDIS_KEY);
     if (scoreboard) {
       res.json(scoreboard);
