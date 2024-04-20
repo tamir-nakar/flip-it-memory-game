@@ -18,6 +18,13 @@ app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
 console.log('sanity')
+app.get("/hello", async (req, res) => {
+
+
+      res.send('hi')
+  
+  
+})
 app.get("/scoreboard", async (req, res) => {
   try {
     console.log(process.env.SCOREBOARD_REDIS_KEY)
