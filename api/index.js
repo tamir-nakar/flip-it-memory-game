@@ -25,6 +25,14 @@ app.get("api/hello", async (req, res) => {
   
   
 })
+
+app.get("/hello2", async (req, res) => {
+
+
+  res.send('hi')
+
+
+})
 app.get("api/scoreboard", async (req, res) => {
   try {
     console.log(process.env.SCOREBOARD_REDIS_KEY)
