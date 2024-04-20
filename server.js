@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 const redis = Redis.fromEnv();
 app.use(
   cors({
-    origin: "https://flip-it-memory-game.vercel.app/",
+    origin: "https://flip-it-memory-game.vercel.app",
     methods: ["GET", "POST"],
   })
 );
