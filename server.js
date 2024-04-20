@@ -18,14 +18,14 @@ app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
 console.log('sanity')
-app.get("/hello", async (req, res) => {
+app.get("api/hello", async (req, res) => {
 
 
       res.send('hi')
   
   
 })
-app.get("/scoreboard", async (req, res) => {
+app.get("api/scoreboard", async (req, res) => {
   try {
     console.log(process.env.SCOREBOARD_REDIS_KEY)
     const scoreboard = await redis.get(process.env.SCOREBOARD_REDIS_KEY);
@@ -47,7 +47,7 @@ app.get("/scoreboard", async (req, res) => {
   }
 });
 
-app.post("/scoreboard", async (req, res) => {
+app.post("api/scoreboard", async (req, res) => {
   try {
     const scoreboard = await redis.get(process.env.SCOREBOARD_REDIS_KEY);
     if (scoreboard) {
