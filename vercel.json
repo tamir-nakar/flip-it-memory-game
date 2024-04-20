@@ -15,9 +15,6 @@
         "src": "/(.*)",
         "dest": "/public/$1"
       }
-    ],
-    "build": {
-        "buildCommand": "npm start"
-      }
+    ]
   }
   
