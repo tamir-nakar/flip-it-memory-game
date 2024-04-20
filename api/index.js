@@ -19,7 +19,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 
-app.get("scoreboard", async (req, res) => {
+app.get("/scoreboard", async (req, res) => {
   try {
     console.log(process.env.SCOREBOARD_REDIS_KEY)
     const scoreboard = await redis.get(process.env.SCOREBOARD_REDIS_KEY);
@@ -41,7 +41,7 @@ app.get("scoreboard", async (req, res) => {
   }
 });
 
-app.post("scoreboard", async (req, res) => {
+app.post("/scoreboard", async (req, res) => {
   try {
     const scoreboard = await redis.get(process.env.SCOREBOARD_REDIS_KEY);
     if (scoreboard) {
