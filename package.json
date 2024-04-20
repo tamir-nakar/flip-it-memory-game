@@ -5,7 +5,6 @@
   "description": "> A memory game with cusomizable cards",
   "main": "constants.js",
   "scripts": {
-    "build": "echo BUILDING && node api/index.js",
     "start": "echo \"running server\" && node api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
