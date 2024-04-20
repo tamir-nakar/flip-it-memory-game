@@ -6,12 +6,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const redis = Redis.fromEnv();
-app.use(
-  cors({
-    origin: "https://flip-it-memory-game.vercel.app",
-    methods: ["GET", "POST"],
-  })
-);
+app.use(cors({
+  origin: "https://flip-it-memory-game.vercel.app",
+  methods: ["GET", "POST"],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 
 app.use(express.static("public"));
 app.use(express.json());
