@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "npm start",
+      "name": "Run server",
+      "request": "launch",
+      "type": "node-terminal",
+      "env": { "PORT": "3000" }
+    },
+    {
+      "name": "Open Memory Game",
+      "request": "launch",
+      "type": "node-terminal",
+      "command": "open http://localhost:3000/",
+      "windows": {
+        "command": "start http://localhost:3000/"
+      },
+      "linux": {
+        "command": "xdg-open http://localhost:3000/"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run server and Open Memory Game 🟢",
+      "configurations": ["Run server", "Open Memory Game"]
+    }
+  ]
+}

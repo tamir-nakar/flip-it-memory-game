@@ -1,0 +1,11 @@
+const FORCE_FETCH = true;
+const RESET_FROM_MENU = true;
+const SCOREBOARD_LENGTH = 10;
+const NEW_ENTRY = true;
+const SHOW = true;
+const REVEALD_CARD = true;
+const CARDS_ARR = document.querySelectorAll('.card');
+const MENU_BTN = document.querySelector("#menuToggle input");
+const DECK_1 = 'deck_southpark';
+const DECK_2 = 'deck_marvel';
+const DECK_CUSTOMIZED = 'cusomized';
