@@ -6,7 +6,8 @@
       "name": "Run server",
       "request": "launch",
       "type": "node-terminal",
-      "env": { "PORT": "3000" }
+      "env": { "PORT": "3000" },
+      "envFile": "${workspaceFolder}/.env"
     },
     {
       "name": "Open Memory Game",

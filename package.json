@@ -1,5 +1,6 @@
 {
   "name": "memory-game",
+  "type": "module",
   "version": "1.0.0",
   "description": "> A memory game with cusomizable cards",
   "main": "constants.js",
@@ -11,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@upstash/redis": "^1.30.0",
     "express": "^4.19.2"
   }
 }

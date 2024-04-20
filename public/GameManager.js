@@ -52,7 +52,7 @@ class GameManager {
 					}, 1600);
 				}
 			} else {
-				// this is the first card reveald of the pair
+				// this is the first card revealed of the pair
 				this._deck.setRevealedCard = card;
 				this._deck.getRevealedCard.setAttribute('active', false);
 			}
