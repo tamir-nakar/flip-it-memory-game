@@ -89,7 +89,6 @@ class GameManager {
 		this._stopWatch.reset();
 		this._deck.unhideAllCards();
 		if (!isInvokedFromMenu) { // game Ended
-			debugger
 			let score = this._stopWatch.getLastRun(); // must be invoked after stopWatch.reset()
 			await _validateScoreAsync.call(this, score)
 			this._scoreBoard.handleLocalScore(score);

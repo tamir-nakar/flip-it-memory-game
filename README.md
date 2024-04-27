@@ -4,7 +4,7 @@
 ![preview_gif](./documentation/preview_gif.gif)
 <p>Flip it is a client-server project made completely using Vanilla.js. The Client is a pure SPA (single page application) making an AJAX calls to the server to read, validate and write scores into the scoreboard. </p>
 <p>In Flip-it you can choose between 2 kinds of decs, Marvel and South-Park, and you can also customize your own deck by dragging png or jpg images at the "customized" panel.</p>
-<p>You play against the clock. Your goal is to finish revealing all the cards at the shortest time possible. You can always try to get better and beat you own records (stores in local-storage), and if you're good enough maybe even qualify to the global scoreboard table and gain an eternal glory buy putting your name there!</p>
+<p>You play against the clock. Your goal is to finish revealing all the cards at the shortest time possible. Revealing a mis-match, will cost you 2 seconds of delay, where picking the correct pair, will let you continue instantly. You can always try to get better and beat you own records (stores in local-storage), and if you're good enough maybe even qualify to the global scoreboard table and gain an eternal glory buy putting your name there!</p>
 
 ### Main features:
 
