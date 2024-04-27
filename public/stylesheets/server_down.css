@@ -1,0 +1,40 @@
+#server_down {
+	text-align: left;
+	display: none;
+	background-color: #64e9fe;
+}
+
+#server_downContent {
+	/* position: absolute;
+    left: 50%;
+    transform: translateX(-50%); */
+	color: white;
+	font-family: 'Kaushan Script', cursive;
+	font-size: 20px;
+}
+
+#server_downContent p {
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	font-family: 'Roboto', sans-serif;
+}
+
+#server_down .scoreBoardHeader {
+	background-color: #383d41;
+}
+
+#server_down p {
+	color: white
+}
+
+#server_down h2 {
+	color: white;
+	padding-top: 60px;
+	padding-left: 30px;
+}
+
+#server_down a {
+	color: #e0f377;
+	font-size: 20px;
+}

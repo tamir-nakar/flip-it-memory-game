@@ -3,7 +3,7 @@ class ScoreBoard {
     this._cacheTtlMin =
       _minToMsec.call(this, cacheTtlMin) || _minToMsec.call(this, 1);
     this._requestUrl = "/scoreboard";
-    this._cachedResutls = null;
+    this._cachedResults = null;
     this._lastReqTimestamp = null;
     this._scoreBoardTableElem = document.querySelector("#scoreBoardTable");
     this._scoreBoardDivElem = document.querySelector("#scoreBoard");
@@ -13,6 +13,7 @@ class ScoreBoard {
   }
 
   handleLocalScore(candidate) {
+    debugger
     let score = UserDataManager.getScore();
 
     if (!candidate) {
@@ -30,18 +31,18 @@ class ScoreBoard {
     //console.log('background-fetch ended');
   }
 
-  async validateAndSubmitAsync(score) {
+  async validateAndSubmitAsync(score, gameId) {
     // called when user pressed 'submit' on table.
     const name = document.querySelector("#nameInput").value;
     const invalidNameMsg = [];
 
     if (_isValidName.call(this, name, invalidNameMsg)) {
       this._msgAreaElem.innerHTML = "";
-      const dataToSubmit = _prepareDataToSubmit.call(this, name, score);
+      const dataToSubmit = _prepareDataToSubmit.call(this, name, score, gameId);
       //console.log(`the data we try to submit is : ${dataToSubmit}`);
       try {
         _submitDataAsync.call(this, dataToSubmit);
-        this._cachedResutls = null; // so next scoreboard will be fresh
+        this._cachedResults = null; // so next scoreboard will be fresh
       } catch (e) {}
       _displayOrHideTable.call(this, !SHOW);
     } else {
@@ -121,11 +122,11 @@ function _isValidName(name, invalidNameOutputArr) {
   return isValid;
 }
 
-function _prepareDataToSubmit(name, score) {
+function _prepareDataToSubmit(name, score, gameId) {
   const date = _getCurrentDate.call(this);
   const formattedScore = _getAbsoluteValue.call(this, score); // 00:04.06 -> 000406 -> 406
 
-  return {name, date, score: formattedScore};
+  return {name, date, score: formattedScore, gameId};
 }
 
 function _cleanTable() {
@@ -138,16 +139,16 @@ function _cleanTable() {
     .forEach((node) => node.remove());
 }
 
-function _draw(results, idxForNewEnery = null, newEntry = null) {
+function _draw(results, idxForNewEntry = null, newEntry = null) {
   // idxForNewEntry is optional - in case we are about to add new score to table
   let tableIndex = 1;
-  let isNewEntry = idxForNewEnery !== null;
+  let isNewEntry = idxForNewEntry !== null;
 
   if (results && results.length > 0) {
     let isNewEntryAdded = false;
 
     results.forEach((result) => {
-      if (isNewEntry && tableIndex === idxForNewEnery + 1) {
+      if (isNewEntry && tableIndex === idxForNewEntry + 1) {
         // handle new entry to table
 
         _addNewRowToBoard.call(this, tableIndex, newEntry, NEW_ENTRY);
@@ -173,7 +174,7 @@ function _draw(results, idxForNewEnery = null, newEntry = null) {
   } else {
     //empty table
 
-    if (idxForNewEnery !== null) {
+    if (idxForNewEntry !== null) {
       _addNewRowToBoard.call(this, tableIndex, newEntry, NEW_ENTRY);
     }
   }
@@ -226,13 +227,13 @@ async function _getTopScoresAsync(forceFetch = false) {
   let results;
 
   try {
-    if (_isResultsFromCache.call(this) && !forceFetch && this._cachedResutls) {
-      results = this._cachedResutls;
+    if (_isResultsFromCache.call(this) && !forceFetch && this._cachedResults) {
+      results = this._cachedResults;
       //console.log('cached results');
     } else {
       const response = await fetch(this._requestUrl);
       results = await response.json();
-      this._cachedResutls = results;
+      this._cachedResults = results;
       this._lastReqTimestamp = Date.now();
       //console.log('fresh results');
     }
@@ -245,7 +246,7 @@ async function _getTopScoresAsync(forceFetch = false) {
 
 function _isResultsFromCache() {
   // request to the server only if this is the first time or
-  // last fetch occured long enough.
+  // last fetch occurred long enough.
 
   return (
     this._lastReqTimestamp &&

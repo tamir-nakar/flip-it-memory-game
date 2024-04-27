@@ -1,28 +1,31 @@
 
-// flip when clicked
-gameManager._deck.getCardList.forEach((card, index) => card.addEventListener('click', () => {
-  if(!gameManager._freezeGame) gameManager.handleCardReveal(card);
-}))
+document.addEventListener('gameManagerReady', function() {
 
-// mouseenter
-gameManager._deck.getCardList.forEach((card, index) => card.addEventListener('mouseenter', () => {
-  if(card.getAttribute('active') === 'true') {
-    card.classList.toggle('hovered');
-  }
-}))
-
-// mouseout
-gameManager._deck.getCardList.forEach((card, index) => card.addEventListener('mouseout', () => {
-  if(card.getAttribute('active') === 'true') {
-    card.classList.toggle('hovered');
-  }
-}))
-
-window.addEventListener('mouseup',(e) => {
-
-    if(!e.target || !e.target.closest('.window')) {
-        gameManager.hideAllMenus();
+  // flip when clicked
+  gameManager._deck.getCardList.forEach((card, index) => card.addEventListener('click', () => {
+    if(!gameManager._freezeGame) gameManager.handleCardReveal(card);
+  }))
+  
+  // mouseenter
+  gameManager._deck.getCardList.forEach((card, index) => card.addEventListener('mouseenter', () => {
+    if(card.getAttribute('active') === 'true') {
+      card.classList.toggle('hovered');
     }
+  }))
+  
+  // mouseout
+  gameManager._deck.getCardList.forEach((card, index) => card.addEventListener('mouseout', () => {
+    if(card.getAttribute('active') === 'true') {
+      card.classList.toggle('hovered');
+    }
+  }))
+  
+  window.addEventListener('mouseup',(e) => {
+  
+      if(!e.target || !e.target.closest('.window')) {
+          gameManager.hideAllMenus();
+      }
+  });
 });
 
 document.querySelector('#menu-newGame').addEventListener('click', (e) => {e.preventDefault(); MENU_BTN.click(); gameManager.resetGame(RESET_FROM_MENU)});
@@ -35,6 +38,7 @@ document.querySelector('#marvelButton').addEventListener('click', (e) => {e.prev
 document.querySelector('#scoreBoardCloseBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.hideScoreBoard()});
 document.querySelector('#deckSettingsCloseBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.hideDeckSettings()});
 document.querySelector('#aboutCloseBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.hideAboutPage()});
+document.querySelector('#server_downCloseBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.hideServerDownPage()});
 document.querySelector('#createDeckCloseBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.hideCreateDeck()});
 document.querySelector('#scoreBoardSubmitBtn').addEventListener('click', (e) => {e.preventDefault(); gameManager.OnSubmitClickedAsync()});
 document.querySelector('#customizeConfirmBtn').addEventListener('click', (e) => {e.preventDefault(); resetCards(); gameManager.setDeckName(DECK_CUSTOMIZED)});

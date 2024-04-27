@@ -13,8 +13,9 @@
     <link rel = 'stylesheet' href = './stylesheets/deck_settings.css' type = 'text/css' >
     <link rel = 'stylesheet' href = './stylesheets/customize_deck.css' type = 'text/css' >
     <link rel = 'stylesheet' href = './stylesheets/about.css' type = 'text/css' >
+    <link rel = 'stylesheet' href = './stylesheets/server_down.css' type = 'text/css' >
 
-    <title>Memory Game</title>
+    <title>Flip it!</title>
 </head>
 
 <body>
@@ -192,13 +193,13 @@
     <div id="scoreBoard" class="window">
         <div class = "windowHeader" align="left" >
             <button id = "scoreBoardCloseBtn" type="button" class="btn btn-danger">X</button>
-            <div align= "center">ScoreBoard</div>
+            <div align= "center">ScoreBoard (top 10 records)</div>
         </div>
         <table id="scoreBoardTable" style="margin-top:50px;">
             <tr id="headerRow"> <!-- Header row -->
                 <td align="center" style="width:1%"><ul class="list-group"><li class="list-group-item list-group-item-primary titleExtraStyle">#</li></ul></td>
                 <td align="center"><ul class="list-group"><li class="list-group-item list-group-item-primary titleExtraStyle">Nickame</li></ul></td>
-                <td align="center"><ul class="list-group"><li class="list-group-item list-group-item-primary titleExtraStyle">Score</li></ul></td>
+                <td align="center"><ul class="list-group"><li class="list-group-item list-group-item-primary titleExtraStyle">Time</li></ul></td>
                 <td align="center"><ul class="list-group"><li class="list-group-item list-group-item-primary titleExtraStyle">Date</li></ul></td>
             </tr>
         </table>
@@ -225,6 +226,17 @@
         <p>You are more than welcome to enter the site, explore some more content and share your toughts.</p>
         <h2> Thanks for playing!</h2> </div>
     </div>
+<!-- About Window END -->
+
+<!-- ServerDown Window START -->
+<div id="server_down" class="window">
+    <div class = "windowHeader" align="left">
+        <button id = "server_downCloseBtn" type="button" class="btn btn-danger">X</button>
+        <div style="margin-left: 24%" >Server is Down - please try again in a few moments</div>
+    </div>
+
+    <div align="center"><img src="./images/server_down.png" width="550px" height="550px"></div>
+</div>
 <!-- About Window END -->
 
 <!-- Deck Settings Window START -->

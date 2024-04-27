@@ -2,13 +2,21 @@ class GameManager {
 
 	constructor(numPairs) {
 
-		this._deck = new Deck(numPairs);
+		this._deck = new Deck(numPairs, isServiceUp);
 		this._scoreBoard = new ScoreBoard();
 		this._stopWatch = new StopWatch();
 		this._remainingPairs = numPairs || 9;
 		this._freezeGame = false;
 		this._isGameStarted = false;
 		this._matchSignal = document.querySelector('#matchSignal');
+		this._gameId
+		this._isServiceUp = isServiceUp
+		if(!isServiceUp){
+			console.log('%cService is down, working in offline mode (no scoreboard)', 'background: #b70000; color: white; padding: 2px;');
+		}else{
+			console.log('%cService is up', 'background: #80ff80; color: #000; padding: 2px;');
+
+		}
 	}
 
 	loadBestScore() {
@@ -19,7 +27,9 @@ class GameManager {
 	handleCardReveal(card) {
 
 		if (!this._isGameStarted) {
+			//starting a new game
 
+			_getGameIdFromServerAsync.call(this)
 			this._stopWatch.start();
 			this._isGameStarted = true;
 		}
@@ -74,14 +84,18 @@ class GameManager {
 
 	async resetGame(isInvokedFromMenu = null) {
 
+		//this._gameId = await _getGameIdFromServer.call(this)
 		this._isGameStarted = false;
 		this._stopWatch.reset();
 		this._deck.unhideAllCards();
 		if (!isInvokedFromMenu) { // game Ended
-
+			debugger
 			let score = this._stopWatch.getLastRun(); // must be invoked after stopWatch.reset()
+			await _validateScoreAsync.call(this, score)
 			this._scoreBoard.handleLocalScore(score);
-			let isScoreAddedToTable = await this._scoreBoard.drawAsync(score);
+			if(this._isServiceUp){
+				await this._scoreBoard.drawAsync(score);
+			}
 		}
 		//this._stopWatch.zerofy();
 		this._deck.clearRevealedCard();
@@ -98,13 +112,17 @@ class GameManager {
 	async OnSubmitClickedAsync() {
 
 		const score = this._stopWatch.getLastRun();
-		this._scoreBoard.validateAndSubmitAsync(score);
+		this._scoreBoard.validateAndSubmitAsync(score, this._gameId);
 	}
 
 	async showScoreBoardAsync(score = null) {
 
 		_hideAllMenus.call(this);
-		await this._scoreBoard.drawAsync(score);
+		if(this._isServiceUp){
+			await this._scoreBoard.drawAsync(score);
+		}else{
+			this.showServerDownPage()
+		}
 	}
 
 	showDeckSettings() {
@@ -122,6 +140,12 @@ class GameManager {
 		document.querySelector('#about').style.display = 'block';
 	}
 
+	showServerDownPage() {
+
+		_hideAllMenus.call(this);
+		document.querySelector('#server_down').style.display = 'block';
+	}
+
 	async showCreateDeck() {
 
 		let customizedImages = null;
@@ -137,6 +161,11 @@ class GameManager {
 	hideScoreBoard() {
 
 		this._scoreBoard.hide();
+	}
+
+	hideServerDownPage() {
+
+		document.querySelector('#server_down').style.display = 'none';
 	}
 
 	hideAboutPage() {
@@ -174,12 +203,50 @@ class GameManager {
 	}
 
 	loadScoreboardInBackgroundAsync() {
-
-		this._scoreBoard.fetchScoresInBackgroundAsync();
+		if(isServiceUp){
+			this._scoreBoard.fetchScoresInBackgroundAsync();
+		}
 	}
 }
 
 // private --!
+
+async function _getGameIdFromServerAsync(){
+
+	if(!this._isServiceUp){
+		return
+	}
+	let gameId = null;
+	try{
+		let response = await fetch('/gameId', {
+			method: "GET",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+		  });
+		  response = await response.json()
+		  gameId = response?.gameId
+	}catch(e){
+		
+	}
+	this._gameId = gameId
+}
+
+async function _validateScoreAsync(score){
+	if(!this._isServiceUp){
+		return
+	}
+	try{
+		await fetch(`/validate?score=${score}&gameId=${this._gameId}`, {
+			method: "GET",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+		  });
+	}catch(e){
+		
+	}
+}
 
 function _showMatchSignal() {
 
@@ -192,6 +259,7 @@ function _hideAllMenus() {
 	document.querySelector('#customize').style.display = 'none';
 	document.querySelector('#deckSettings').style.display = 'none';
 	document.querySelector('#about').style.display = 'none';
+	document.querySelector('#server_down').style.display = 'none';
 
 	this._scoreBoard.hide();
 }
