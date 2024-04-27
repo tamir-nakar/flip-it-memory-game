@@ -13,7 +13,6 @@ class ScoreBoard {
   }
 
   handleLocalScore(candidate) {
-    debugger
     let score = UserDataManager.getScore();
 
     if (!candidate) {
